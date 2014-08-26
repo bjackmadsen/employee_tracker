@@ -129,5 +129,16 @@ def delete_division
   sleep(1.5)
 end
 
+# def employee_to_division
+#   puts "*** ASSIGN EMPLOYEES TO DIVISIONS ***\n"
+#   divisions = Division.all
+#   divisions.each do |division|
+#     puts division.name
+#   end
+#   puts "\n"
+#   puts "To add employees type a division name."
+#   division_name = gets.chomp
+#   puts "\n add employee to #{division_name}."
+
 
 welcome
