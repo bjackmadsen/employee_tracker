@@ -41,10 +41,21 @@ def add_employee
 end
 
 def list_employees
-  puts "Here is a list of employees: "
+  puts "*** CURRENT EMPLOYEES ***\n"
+  puts "Type 'd' to delete an employee."
+  puts "Type 'e' to return to the main menu.\n\n"
   employees = Employee.all
   employees.each do |employee|
     puts employee.name
+  end
+  choice = gets.chomp
+  case choice
+  when 'e'
+    menu
+  when 'd'
+    delete_employee
+  else
+    puts "Sorry, that wasn't a valid option."
   end
 end
 
