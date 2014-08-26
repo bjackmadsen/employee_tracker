@@ -22,7 +22,7 @@ def menu
     when 'a'
       add_employee
     when 'l'
-      list
+      list_employees
     when 'e'
       puts "Good-bye!"
     else
@@ -38,6 +38,14 @@ def add_employee
   employee = Employee.new({:name => employee_name})
   employee.save
   puts "'#{employee_name}' has been added to the list of current Employees."
+end
+
+def list_employees
+  puts "Here is a list of employees: "
+  employees = Employee.all
+  employees.each do |employee|
+    puts employee.name
+  end
 end
 
 welcome
