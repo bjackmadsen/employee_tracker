@@ -62,7 +62,7 @@ def list_employees
   choice = gets.chomp
   case choice
   when 'e'
-    menu
+    welcome
   when 'd'
     delete_employee
   else
@@ -81,6 +81,8 @@ def delete_employee
   deleted_employee = Employee.where({:name => employee_name}).first
   deleted_employee.destroy
   puts "#{employee_name} is no longer a Current Employee."
+  sleep(1.5)
+  welcome
 end
 
 def add_division
@@ -92,6 +94,28 @@ def add_division
   puts "'#{division_name}' has been added to the list of current Divisions."
 end
 
+def list_divisions
+  puts "*** CURRENT DIVISIONS ***\n"
+  puts "Type 'd' to delete a division."
+  puts "Type 'a' to add an employee to a division."
+  puts "Type 'e' to return to the main menu.\n\n"
+  divisions = Division.all
+  divisions.each do |division|
+    puts division.name
+  end
+  puts "\n"
+  choice = gets.chomp
+  case choice
+  when 'a'
+    employee_to_division
+  when 'e'
+    welcome
+  when 'd'
+    delete_division
+  else
+    puts "Sorry, that wasn't a valid option."
+  end
+end
 
 
 welcome
