@@ -8,6 +8,7 @@ development_configuration = database_configurations['development']
 ActiveRecord::Base.establish_connection(development_configuration)
 
 def welcome
+  system 'clear'
   puts "Welcome to the Employee Tracker Program"
   menu
 end
@@ -15,16 +16,25 @@ end
 def menu
   choice = nil
   until choice == 'e'
-    puts "Type 'a' to add an employee, and 'l' to list employees."
+    puts "Type '1' to add an Employee."
+    puts "Type '2' to list employees."
+    puts "Type '3' to add a Division."
+    puts "Type '4' to list Divisions."
     puts "Type 'e' to exit."
     choice = gets.chomp
     case choice
-    when 'a'
+    when '1'
       add_employee
-    when 'l'
+    when '2'
       list_employees
+    when '3'
+      add_division
+    when '4'
+      list_divisions
     when 'e'
       puts "Good-bye!"
+      sleep(1)
+      system 'clear'
     else
       puts "Sorry, that wasn't a valid option."
     end
@@ -48,6 +58,7 @@ def list_employees
   employees.each do |employee|
     puts employee.name
   end
+  puts "\n"
   choice = gets.chomp
   case choice
   when 'e'
@@ -57,6 +68,19 @@ def list_employees
   else
     puts "Sorry, that wasn't a valid option."
   end
+end
+
+def delete_employee
+  puts "*** DELETE AN EMPLOYEE ***\n"
+  puts "Please type the name of an Employee who you would like to delete:"
+  Employee.all.each do |employee|
+    puts employee.name
+    puts "\n"
+  end
+  employee_name = gets.chomp
+  deleted_employee = Employee.where({:name => employee_name}).first
+  deleted_employee.destroy
+  puts "#{employee_name} is no longer a Current Employee."
 end
 
 welcome
