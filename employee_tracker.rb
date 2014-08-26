@@ -62,7 +62,7 @@ def list_employees
   choice = gets.chomp
   case choice
   when 'e'
-    welcome
+    puts "here we go!"
   when 'd'
     delete_employee
   else
@@ -72,17 +72,16 @@ end
 
 def delete_employee
   puts "*** DELETE AN EMPLOYEE ***\n"
-  puts "Please type the name of an Employee who you would like to delete:"
+  puts "Please type the name of an Employee who you would like to delete:\n\n"
   Employee.all.each do |employee|
     puts employee.name
-    puts "\n"
   end
+  puts "\n"
   employee_name = gets.chomp
   deleted_employee = Employee.where({:name => employee_name}).first
   deleted_employee.destroy
-  puts "#{employee_name} is no longer a Current Employee."
+  puts "\n#{employee_name} is no longer a Current Employee."
   sleep(1.5)
-  welcome
 end
 
 def add_division
@@ -109,12 +108,25 @@ def list_divisions
   when 'a'
     employee_to_division
   when 'e'
-    welcome
+    puts "Here we gooooo!"
   when 'd'
     delete_division
   else
     puts "Sorry, that wasn't a valid option."
   end
+end
+
+def delete_division
+  puts "*** DELETE AN DIVISION ***\n"
+  puts "Please type the name of an Division that you would like to delete:"
+  Division.all.each do |division|
+    puts division.name
+  end
+  division_name = gets.chomp
+  deleted_division = Division.where({:name => division_name}).first
+  deleted_division.destroy
+  puts "\n\n#{division_name} is no longer a current Division."
+  sleep(1.5)
 end
 
 
