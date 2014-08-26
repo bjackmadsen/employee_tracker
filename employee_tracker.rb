@@ -3,7 +3,7 @@ require './lib/division'
 require './lib/employee'
 require './lib/project'
 
-database_configurations = YAML::(File.open('./db/config.yml'))
+database_configurations = YAML::load(File.open('./db/config.yml'))
 development_configuration = database_configurations['development']
 ActiveRecord::Base.establish_connection(development_configuration)
 
@@ -20,7 +20,7 @@ def menu
     choice = gets.chomp
     case choice
     when 'a'
-      add
+      add_employee
     when 'l'
       list
     when 'e'
@@ -31,3 +31,13 @@ def menu
   end
 end
 
+def add_employee
+  puts "*** ADD EMPLOYEE ***\n\n"
+  puts "Please add the name of an Employee: "
+  employee_name = gets.chomp
+  employee = Employee.new({:name => employee_name})
+  employee.save
+  puts "'#{employee_name}' has been added to the list of current Employees."
+end
+
+welcome
