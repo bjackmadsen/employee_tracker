@@ -83,4 +83,15 @@ def delete_employee
   puts "#{employee_name} is no longer a Current Employee."
 end
 
+def add_division
+  puts "*** ADD DIVISION ***\n\n"
+  puts "Please add the name of an Division: "
+  division_name = gets.chomp
+  division = Division.new({:name => division_name})
+  division.save
+  puts "'#{division_name}' has been added to the list of current Divisions."
+end
+
+
+
 welcome
