@@ -138,7 +138,17 @@ end
 #   puts "\n"
 #   puts "To add employees type a division name."
 #   division_name = gets.chomp
-#   puts "\n add employee to #{division_name}."
+#   puts "\n add employee to #{division_name}.\n"
+#   employees = Employee.all
+#   employees.each do |employee|
+#     puts employee.name
+#   end
+#   puts "\n type an employees name.\n"
+#   employee_name = gets.chomp
+#   Employee.
+
+# end
+
 
 
 welcome
