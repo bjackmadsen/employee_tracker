@@ -108,6 +108,8 @@ def list_divisions
   case choice
   when 'a'
     employee_to_division
+  when 'l'
+    list_employees_in_division
   when 'e'
     puts "Here we gooooo!"
   when 'd'
@@ -153,6 +155,22 @@ def employee_to_division
   division.employees.each do |employee|
     puts employee.name
   end
+end
+
+def list_employees_in_division
+  puts "*** EMPLOYEES IN A DIVISION ***\n"
+  divisions = Division.all
+  divisions.each do |division|
+    puts division.name
+  end
+  puts "\nType a name of a division to view its current employees:"
+  division_name = gets.chomp
+  puts "\n"
+  division = Division.where(name: division_name).first
+  division.employees.each do |employee|
+    puts employee.name
+  end
+  puts "\n\n"
 end
 
 
