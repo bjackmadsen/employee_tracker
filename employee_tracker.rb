@@ -97,6 +97,7 @@ def list_divisions
   puts "*** CURRENT DIVISIONS ***\n"
   puts "Type 'd' to delete a division."
   puts "Type 'a' to add an employee to a division."
+  puts "Type 'l' to list employees that work in a division."
   puts "Type 'e' to return to the main menu.\n\n"
   divisions = Division.all
   divisions.each do |division|
@@ -129,25 +130,30 @@ def delete_division
   sleep(1.5)
 end
 
-# def employee_to_division
-#   puts "*** ASSIGN EMPLOYEES TO DIVISIONS ***\n"
-#   divisions = Division.all
-#   divisions.each do |division|
-#     puts division.name
-#   end
-#   puts "\n"
-#   puts "To add employees type a division name."
-#   division_name = gets.chomp
-#   puts "\n add employee to #{division_name}.\n"
-#   employees = Employee.all
-#   employees.each do |employee|
-#     puts employee.name
-#   end
-#   puts "\n type an employees name.\n"
-#   employee_name = gets.chomp
-#   Employee.
-
-# end
+def employee_to_division
+  puts "*** ASSIGN EMPLOYEES TO DIVISIONS ***\n"
+  divisions = Division.all
+  divisions.each do |division|
+    puts division.name
+  end
+  puts "\n"
+  puts "To add employees type a division name."
+  division_name = gets.chomp
+  division = Division.where(name: division_name).first
+  puts "add employee to #{division_name}.\n"
+  employees = Employee.all
+  employees.each do |employee|
+    puts employee.name
+  end
+  puts "Type an employee's name:\n"
+  employee_name = gets.chomp
+  employee = Employee.where(name: employee_name).first
+  division.employees << employee
+  puts "Here are all the employees for #{division.name}:"
+  division.employees.each do |employee|
+    puts employee.name
+  end
+end
 
 
 
